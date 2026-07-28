@@ -114,7 +114,7 @@ class SharedStateStreamingFrameworkAgent(AgentFrameworkAgent):
     (``aimock/d6/ms-agent-python/shared-state-streaming.json``) so aimock
     streams the args in small chunks and MAF emits the per-token deltas under
     replay too — matching real-LLM behavior. Verified cross-session against a
-    live MAF rc8 + real-OpenAI run on the ag-ui dojo (no hang there either):
+    live MAF 1.0 + real-OpenAI run on the ag-ui dojo (no hang there either):
     the MAF adapter was never the bug. With the seed + the chunked fixture,
     multi-turn shared-state-streaming is D6-green and un-quarantined.
     """
