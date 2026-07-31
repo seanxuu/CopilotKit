@@ -74,7 +74,7 @@ test("transcript client calls the delivery-scoped route with runtime auth", asyn
   const client = new ChannelDeliveryTranscriptClient({
     baseUrl: "https://api.example/",
     apiKey: "cpk-runtime",
-    fetch,
+    fetch: fetch as unknown as typeof globalThis.fetch,
   });
 
   await expect(client.fetchTranscript("dlv_123")).resolves.toEqual(transcript);
@@ -103,7 +103,7 @@ test("transcript client makes three total attempts for retryable failures", asyn
   const client = new ChannelDeliveryTranscriptClient({
     baseUrl: "https://api.example",
     apiKey: "cpk-runtime",
-    fetch,
+    fetch: fetch as unknown as typeof globalThis.fetch,
   });
 
   await expect(client.fetchTranscript("dlv_123")).resolves.toEqual(transcript);
@@ -124,7 +124,7 @@ test("transcript client does not retry permanent failures", async () => {
   const client = new ChannelDeliveryTranscriptClient({
     baseUrl: "https://api.example",
     apiKey: "cpk-runtime",
-    fetch,
+    fetch: fetch as unknown as typeof globalThis.fetch,
   });
 
   await expect(client.fetchTranscript("dlv_123")).rejects.toMatchObject({
@@ -143,7 +143,7 @@ test("transcript client rejects malformed successful responses without another p
   const client = new ChannelDeliveryTranscriptClient({
     baseUrl: "https://api.example",
     apiKey: "cpk-runtime",
-    fetch,
+    fetch: fetch as unknown as typeof globalThis.fetch,
   });
 
   await expect(client.fetchTranscript("dlv_123")).rejects.toMatchObject({
@@ -161,7 +161,7 @@ test("assistant transcript history stays plain while participant metadata stays 
   const transcriptClient = new ChannelDeliveryTranscriptClient({
     baseUrl: "https://api.example",
     apiKey: "cpk-runtime",
-    fetch,
+    fetch: fetch as unknown as typeof globalThis.fetch,
   });
   const delivery: PreparedChannelDelivery = {
     protocol: "channel_delivery_v1",
